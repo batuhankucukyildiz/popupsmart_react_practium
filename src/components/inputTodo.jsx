@@ -26,7 +26,6 @@ const InputTodo = () => {
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
-        <Add />
         Change ToDo
       </Button>
 
