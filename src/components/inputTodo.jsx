@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
+import Read from "./read";
 const InputTodo = () => {
   const apikey = process.env.REACT_APP_API_KEY;
   const [show, setShow] = useState(false);
@@ -25,7 +26,8 @@ const InputTodo = () => {
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
-        Add,Change ToDo
+        <Add />
+        Change ToDo
       </Button>
 
       <Modal show={show} onHide={handleClose}>
