@@ -7,12 +7,14 @@ import axios from "axios";
 const Create = () => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
+  const [todo, setTodo] = useState("");
   const apikey = process.env.REACT_APP_API_KEY;
   const pData = () => {
-    if (name.length > 3) {
+    if (todo.length > 3) {
       axios.post(`${apikey}`, {
         name,
         surname,
+        todo,
       });
     } else {
       alert("The number of characters cannot be less than 3");
@@ -42,6 +44,17 @@ const Create = () => {
             type="text"
             placeholder="Surname:"
             onChange={(e) => setSurname(e.target.value)}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="input2">
+          <Form.Label>
+            {" "}
+            <h6>Todo:</h6>
+          </Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="..."
+            onChange={(e) => setTodo(e.target.value)}
           />
         </Form.Group>
         <Button variant="primary" type="button" onClick={pData}>

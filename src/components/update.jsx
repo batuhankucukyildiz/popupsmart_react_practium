@@ -9,7 +9,6 @@ const Update = () => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [id, setID] = useState(null);
-
   let history = useNavigate();
   useEffect(() => {
     setID(localStorage.getItem("ID"));
