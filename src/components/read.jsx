@@ -3,9 +3,11 @@ import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import InputTodo from "./inputTodo";
 
 const Read = () => {
   const [APIData, setAPIData] = useState([]);
+  const apikey = process.env.REACT_APP_API_KEY;
 
   useEffect(() => {
     const fecthData = async () => {
@@ -32,8 +34,11 @@ const Read = () => {
       getData();
     });
   };
-  const apikey = process.env.REACT_APP_API_KEY;
-
+  const todoUpdate = (id) => {
+    axios.post(`${apikey}${id}`).then(() => {
+      getData();
+    });
+  };
   return (
     <div>
       <Table striped bordered hover>
@@ -52,12 +57,18 @@ const Read = () => {
               <h6>Last Name:</h6>
             </th>
             <th>
-              {" "}
-              <h6>Update:</h6>
+              <h6>ToDo List:</h6>
             </th>
             <th>
               {" "}
-              <h6>Delete:</h6>
+              <h6> Name Update:</h6>
+            </th>
+            <th>
+              {" "}
+              <h6>Add/Change ToDo:</h6>
+            </th>
+            <th>
+              <h6>ToDo Delete:</h6>{" "}
             </th>
           </tr>
         </thead>
@@ -74,11 +85,23 @@ const Read = () => {
               <td>
                 <h6>{repo.surname}</h6>
               </td>
-              <Link to="/update">
-                <Button variant="success" onClick={() => setData(repo)}>
+              <td>
+                <h6>{repo.todo}</h6>
+              </td>
+              <Link
+                style={{
+                  width: "100%",
+                  display: "flex",
+                }}
+                to="/update"
+              >
+                <Button variant="primary" onClick={() => setData(repo)}>
                   Update
                 </Button>
               </Link>
+              <td>
+                <InputTodo />
+              </td>
               <td>
                 <Button variant="danger" onClick={() => onDelete(repo.id)}>
                   Delete
