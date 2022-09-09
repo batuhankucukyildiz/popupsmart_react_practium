@@ -3,20 +3,25 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Create = () => {
   const [name, setName] = useState("");
-  const [surname,setSurname] = useState("");
+  const [surname, setSurname] = useState("");
   const [todo, setTodo] = useState("");
-
+  const navigate = useNavigate();
   const apikey = process.env.REACT_APP_API_KEY;
   const pData = () => {
     if (todo.length > 3) {
-      axios.post(`${apikey}`, {
-        name,
-        surname,
-        todo,
-      });
+      axios
+        .post(`${apikey}`, {
+          name,
+          surname,
+          todo,
+        })
+        .then(() => {
+          navigate("/read");
+        });
     } else {
       alert("The number of characters cannot be less than 3");
     }

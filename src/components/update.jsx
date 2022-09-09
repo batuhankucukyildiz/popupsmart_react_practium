@@ -10,7 +10,7 @@ const Update = () => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [id, setID] = useState(null);
-  const history = useNavigate();
+  const navigate = useNavigate();
   useEffect(() => {
     setID(localStorage.getItem("ID"));
     setName(localStorage.getItem("First Name"));
@@ -24,7 +24,7 @@ const Update = () => {
         surname,
       })
       .then(() => {
-        history("/read");
+        navigate("/read");
       });
   };
 

@@ -5,10 +5,13 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import InputTodo from "./inputTodo";
 import StateContext from "../context/stateContext";
+import { useNavigate } from "react-router-dom";
+
 const Read = () => {
   const [APIData, setAPIData] = useState([]);
   const apikey = process.env.REACT_APP_API_KEY;
   const data = useContext(StateContext);
+  const history = useNavigate();
   console.log(data);
   useEffect(() => {
     const fecthData = async () => {
@@ -32,7 +35,8 @@ const Read = () => {
 
   const onDelete = (id) => {
     axios.delete(`${apikey}${id}`).then(() => {
-      //  getData();
+      getData();
+      history("/read");
     });
   };
 
