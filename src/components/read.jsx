@@ -19,7 +19,7 @@ const Read = () => {
       setAPIData(response.data);
     };
     fecthData();
-  }, []);
+  }, [APIData]);
   const getData = () => {
     axios.get(`${apikey}`).then((getData) => {
       setAPIData(getData.repo);

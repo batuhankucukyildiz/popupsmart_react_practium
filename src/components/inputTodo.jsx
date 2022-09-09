@@ -23,12 +23,9 @@ const InputTodo = () => {
     axios.put(`${apikey}${id}`, {
       todo,
     });
-
-    alert(id);
   };
   const localdata = () => {
     localStorage.setItem("ID", id);
-    alert(id);
   };
 
   return (
