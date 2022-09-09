@@ -23,6 +23,7 @@ const Read = () => {
   const getData = () => {
     axios.get(`${apikey}`).then((getData) => {
       setAPIData(getData.repo);
+      history("/read");
     });
   };
   const setData = (repo) => {
@@ -36,7 +37,6 @@ const Read = () => {
   const onDelete = (id) => {
     axios.delete(`${apikey}${id}`).then(() => {
       getData();
-      history("/read");
     });
   };
 
