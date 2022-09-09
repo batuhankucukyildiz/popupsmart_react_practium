@@ -6,8 +6,9 @@ import axios from "axios";
 
 const Create = () => {
   const [name, setName] = useState("");
-  const [surname, setSurname] = useState("");
+  const [surname,setSurname] = useState("");
   const [todo, setTodo] = useState("");
+
   const apikey = process.env.REACT_APP_API_KEY;
   const pData = () => {
     if (todo.length > 3) {

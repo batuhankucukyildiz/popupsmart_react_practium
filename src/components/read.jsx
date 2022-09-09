@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import InputTodo from "./inputTodo";
-
+import StateContext from "../context/stateContext";
 const Read = () => {
   const [APIData, setAPIData] = useState([]);
   const apikey = process.env.REACT_APP_API_KEY;
-
+  const data = useContext(StateContext);
+  console.log(data);
   useEffect(() => {
     const fecthData = async () => {
       const response = await axios.get(`${apikey}`);
@@ -31,14 +32,10 @@ const Read = () => {
 
   const onDelete = (id) => {
     axios.delete(`${apikey}${id}`).then(() => {
-      getData();
+      //  getData();
     });
   };
-  const todoUpdate = (id) => {
-    axios.post(`${apikey}${id}`).then(() => {
-      getData();
-    });
-  };
+
   return (
     <div>
       <Table striped bordered hover>

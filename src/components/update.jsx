@@ -2,14 +2,15 @@ import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
+import { hasPointerEvents } from "@testing-library/user-event/dist/utils";
 
 const Update = () => {
   const apikey = process.env.REACT_APP_API_KEY;
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [id, setID] = useState(null);
-  let history = useNavigate();
+  const history = useNavigate();
   useEffect(() => {
     setID(localStorage.getItem("ID"));
     setName(localStorage.getItem("First Name"));
@@ -23,7 +24,7 @@ const Update = () => {
         surname,
       })
       .then(() => {
-        history.push("/read");
+        history("/read");
       });
   };
 
